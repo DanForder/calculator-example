@@ -1,8 +1,9 @@
+//global variables
+const resultDisplay = document.querySelector(".calculator__result-display");
+const inputDisplay = document.querySelector(".calculator__input-display");
 const numbers = document.querySelectorAll(".calculator__number");
 const operators = document.querySelectorAll(".calculator__operator");
 const clearButton = document.querySelector("#ac");
-const resultDisplay = document.querySelector(".calculator__result-display");
-const inputDisplay = document.querySelector(".calculator__input-display");
 const equalsButton = document.querySelector("#equals");
 
 let firstNumber = "";
@@ -10,6 +11,7 @@ let secondNumber = "";
 let operator = "";
 let result = "";
 
+// logic
 const updateHtml = () => {
   inputDisplay.innerText = `${firstNumber} ${operator} ${secondNumber}`;
   resultDisplay.innerText = result;
@@ -19,6 +21,7 @@ const handleClearPress = () => {
   firstNumber = "";
   secondNumber = "";
   operator = "";
+  result = "";
   resultDisplay.innerText = "";
   inputDisplay.innerText = "";
   updateHtml();
@@ -85,34 +88,29 @@ const handleOperatorPress = (event) => {
 };
 
 const handleEqualsPress = () => {
-  firstNumber = parseFloat(firstNumber);
-  secondNumber = parseFloat(secondNumber);
+  const firstNumberAsFloat = parseFloat(firstNumber);
+  const secondNumberAsFloat = parseFloat(secondNumber);
 
-  if (isNaN(firstNumber) || isNaN(secondNumber)) {
+  if (isNaN(firstNumberAsFloat) || isNaN(secondNumberAsFloat)) {
     console.warn("tried to calculate NaN");
     return;
   }
 
-  const result = calculateSum(firstNumber, operator, secondNumber);
-  if (result !== undefined) {
-    resultDisplay.innerText = result;
+  result = calculateSum(firstNumberAsFloat, operator, secondNumberAsFloat);
+  if (result === undefined) {
+    console.warn("result was undefined!");
+    return;
   }
 
   updateHtml();
-
-  firstNumber = result;
-  operator = "";
-  secondNumber = "";
 };
 
-clearButton.addEventListener("click", handleClearPress);
-
+//event listeners
 numbers.forEach((numberButton) => {
   numberButton.addEventListener("click", handleNumberPress);
 });
-
 operators.forEach((operator) => {
   operator.addEventListener("click", handleOperatorPress);
 });
-
+clearButton.addEventListener("click", handleClearPress);
 equalsButton.addEventListener("click", handleEqualsPress);
