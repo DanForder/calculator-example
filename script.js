@@ -103,6 +103,11 @@ const handleEqualsPress = () => {
   }
 
   updateHtml();
+
+  //TODO: fix when user presses a number after this, it appends rather than clears
+  firstNumber = result;
+  operator = "";
+  secondNumber = "";
 };
 
 //event listeners
