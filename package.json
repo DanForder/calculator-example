@@ -1,0 +1,22 @@
+{
+  "name": "calculator-example",
+  "version": "1.0.0",
+  "description": "",
+  "main": "script.js",
+  "scripts": {
+    "cypress": "cypress open"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DanForder/calculator-example.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DanForder/calculator-example/issues"
+  },
+  "homepage": "https://github.com/DanForder/calculator-example#readme",
+  "devDependencies": {
+    "cypress": "^9.5.0"
+  }
+}
